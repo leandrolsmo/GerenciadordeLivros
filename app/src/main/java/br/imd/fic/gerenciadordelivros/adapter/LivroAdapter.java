@@ -47,8 +47,9 @@ public class LivroAdapter extends RecyclerView.Adapter<LivroAdapter.LivroHolder>
         holder.txtAutor.setText(livro.getAutor());
         holder.txtEditora.setText(livro.getEditora());
 
-        if(livro.isEmprestado()){
+        if(livro.getEmprestado()==1){
             holder.ic_livro.setColorFilter(Color.GRAY);
+            holder.ic_star.setVisibility(View.VISIBLE);
         }
 
     }
@@ -58,6 +59,10 @@ public class LivroAdapter extends RecyclerView.Adapter<LivroAdapter.LivroHolder>
         return livros.size();
     }
 
+    public void setItems(List<Livro> livros){
+        this.livros = livros;
+    }
+
     public class  LivroHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener, View.OnLongClickListener {
 
@@ -65,6 +70,7 @@ public class LivroAdapter extends RecyclerView.Adapter<LivroAdapter.LivroHolder>
         public TextView txtAutor;
         public TextView txtEditora;
         public ImageView ic_livro;
+        public ImageView ic_star;
 
         public LivroHolder(View view){
             super(view);
@@ -73,6 +79,7 @@ public class LivroAdapter extends RecyclerView.Adapter<LivroAdapter.LivroHolder>
             txtAutor = view.findViewById(R.id.txtAutor);
             txtEditora = view.findViewById(R.id.txtEditora);
             ic_livro = view.findViewById(R.id.uc_livro);
+            ic_star = view.findViewById(R.id.ic_star);
 
             view.setOnClickListener(this);
             view.setOnLongClickListener(this);
